@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "InstaTools",
+  "version": "0.1.1",
+
+  "description": "Some common tools for Instagram like opening raw images and videos",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.instagram.com/*"],
+      "js": ["content-scripts/instagram.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
