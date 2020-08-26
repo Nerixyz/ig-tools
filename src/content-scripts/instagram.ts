@@ -7,15 +7,15 @@ const globalObserver = new MutationObserver((mutations) => {
             continue;
         }
 
-        const story = added.find(x => x.tagName === 'SECTION' && (x.classList.contains('_8XqED') || x.classList.contains('_9eogI')));
+        const story = added.find(x => (x.tagName === 'SECTION' && x.classList.contains('_8XqED')) || (x.tagName === 'DIV' && x.classList.contains('qbCDp')));
         if (story) {
-            const actualStory = story.classList.contains('_9eogI') ? story.querySelector('section._8XqED') : story;
+            const actualStory = story.classList.contains('qbCDp') ? document.querySelector('section._9eogI._01nki section._8XqED') : story;
             if (!actualStory) continue;
             handleStory(actualStory);
             continue;
         }
 
-        const timeline = added.find(x => x.classList.contains('sH9wk'));
+        const timeline = added.find(x => x.classList.contains('sH9wk') || x.classList.contains('E3X2T'));
         if(timeline) {
             const posts = document.querySelectorAll('article.M9sTE');
             posts.forEach(el => handleAddedPost(el));
