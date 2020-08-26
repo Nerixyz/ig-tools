@@ -27,15 +27,16 @@ globalObserver.observe(document, {childList: true, subtree: true});
 function handleStory(story: Element) {
     const header = story.querySelector('header .aOX72');
     const content = story.querySelector('.GHEPc');
-    if (!header || !content) return;
+    if (!header || !content || Reflect.get(header, '__ext_known')) return;
+    Reflect.set(header, '__ext_known', true);
 
     header.append(createStoryButton(content));
 }
 
 function handleAddedPost(post: Element) {
     if (!post || Reflect.get(post, '__ext_known')) return;
-
     Reflect.set(post, '__ext_known', true);
+
     const buttons = post.querySelector('section.ltpMr.Slqrh');
     const actualMedia = post.querySelector('div._97aPb');
     if (!buttons || !actualMedia || !buttons.lastChild) return;
