@@ -3,7 +3,8 @@ import copy from 'rollup-plugin-copy'
 
 export default [
     ...fromDirectory('content-scripts', [
-        'instagram'
+        'instagram',
+        'context'
     ]),
 ].map((file) => ({
     input: `src/${file}.ts`,
