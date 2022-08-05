@@ -1,8 +1,10 @@
-const POST_CLASS = '_aatb';
-const POST_BUTTONS_SELECTOR = 'section._aat0._aat1,section._aamu._aat0'; // timeline, modal
-const POST_BODY_SELECTOR = 'div._aatk';
+const POST_CLASS = '_ab0v';
+const POST_BUTTONS_SELECTOR = 'section._aamu._aaz9,section._aamu._aat0'; // timeline, modal
+const POST_BODY_SELECTOR = 'div._ab12';
+const POST_POPUP = 'hwddc3l5';
+const POST_SINGLE_PAGE = 'du4w35lb'; // class added on single page load
 
-const TIMELINE_OUTER = '_aalz';
+const TIMELINE_OUTER = '_aag2';
 const TIMELINE_INNER = '_abc0';
 
 const STORY_NODE_WRAPPER = '_aa64'; // the added node, not really the wrapper
@@ -19,6 +21,9 @@ const ALBUM_LI_CLASS = '_acaz';
 const globalObserver = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
         const added = Array.from(mutation.addedNodes) as HTMLElement[];
+        // USE THIS WHEN DEBUGGING
+        //
+        // console.log(...added);
         const post = added.find(x =>
             x.tagName === 'ARTICLE' &&
             x.classList?.contains(POST_CLASS));
@@ -30,9 +35,11 @@ const globalObserver = new MutationObserver((mutations) => {
         const timeline = added.find(x =>
             x.classList?.contains(TIMELINE_OUTER) ||
             x.classList?.contains(TIMELINE_INNER) ||
-            x.classList?.contains(POST_CLASS)
+            x.classList?.contains(POST_CLASS) ||
+            x.classList?.contains(POST_POPUP) ||
+            x.classList?.contains(POST_SINGLE_PAGE)
         );
-        if(timeline) {
+        if (timeline) {
             const posts = document.querySelectorAll(`article.${POST_CLASS}`);
             posts.forEach(el => handleAddedPost(el));
         }
