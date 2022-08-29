@@ -1,8 +1,8 @@
-const POST_CLASS = '_ab0v';
-const POST_BUTTONS_SELECTOR = 'section._aamu._aaz9,section._aamu._aat0'; // timeline, modal
-const POST_BODY_SELECTOR = 'div._ab12';
-const POST_POPUP = 'hwddc3l5';
-const POST_SINGLE_PAGE = 'du4w35lb'; // class added on single page load
+const POST_CLASS = '_aatb'; // <article> element for post
+const POST_BUTTONS_SELECTOR = 'section._aamu._ae3_'; // both timeline, modal
+const POST_BODY_SELECTOR = 'div._aato'; // body for both videos and photos
+const POST_POPUP = 'h4m39qi9'; // class added on popup
+const POST_SINGLE_PAGE = 'fawcizw8'; // class added on single page load
 
 const TIMELINE_OUTER = '_aag2';
 const TIMELINE_INNER = '_abc0';
