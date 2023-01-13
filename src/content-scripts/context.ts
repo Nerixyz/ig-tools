@@ -1,11 +1,12 @@
 const POST_CLASS = '_aatb'; // <article> element for post
 const POST_BUTTONS_SELECTOR = 'section._aamu._ae3_'; // both timeline, modal
 const POST_BODY_SELECTOR = 'div._aato'; // body for both videos and photos
-const POST_POPUP = 'h4m39qi9'; // class added on popup
-const POST_SINGLE_PAGE = 'fawcizw8'; // class added on single page load
+const POST_POPUP = '_aatg'; // class added on popup
+const POST_SINGLE_PAGE = 'x78zum5'; // class added on single page load
+const POST_POPUP_WRAP_SELECTOR = '._aamm'; // class of the wrapper when the popup is added
 
 const TIMELINE_OUTER = '_aag2';
-const TIMELINE_INNER = '_abc0';
+const TIMELINE_INNER = '_abc0'; // narrow, contains all articles
 
 const STORY_NODE_WRAPPER = '_aa64'; // the added node, not really the wrapper
 const STORY_MODAL_SELECTOR = 'section._ac6a._ac0e section._ac0a';
@@ -14,8 +15,8 @@ const STORY_CONTENT_SELECTOR = '._aa65';
 
 const BUTTON_LIKE_CLASS = '_abl-';
 
-const ALBUM_BUTTON_BACK_CLASS = '_aahh';
-const ALBUM_BUTTON_FORTH_CLASS = '_aahi';
+const ALBUM_BUTTON_BACK_CLASS = '_afxv';
+const ALBUM_BUTTON_FORTH_CLASS = '_afxw';
 const ALBUM_LI_CLASS = '_acaz';
 
 const globalObserver = new MutationObserver((mutations) => {
@@ -40,7 +41,9 @@ const globalObserver = new MutationObserver((mutations) => {
             x.classList?.contains(POST_SINGLE_PAGE)
         );
         if (timeline) {
+            console.log('tl');
             const posts = document.querySelectorAll(`article.${POST_CLASS}`);
+            console.log(posts);
             posts.forEach(el => handleAddedPost(el));
         }
 
@@ -68,7 +71,10 @@ function handleAddedPost(post: Element) {
     mark(post);
 
     const buttons = post.querySelector(POST_BUTTONS_SELECTOR);
-    const actualMedia = post.querySelector(POST_BODY_SELECTOR);
+    let actualMedia = post.querySelector(POST_BODY_SELECTOR);
+    if (!actualMedia) {
+        actualMedia = post.querySelector(POST_POPUP_WRAP_SELECTOR);
+    }
     if (!buttons || !actualMedia || !buttons.lastChild) return;
 
     buttons.insertBefore(createPostButton(actualMedia), buttons.lastChild);
