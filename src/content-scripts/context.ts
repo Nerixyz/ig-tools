@@ -8,10 +8,10 @@ const POST_POPUP_WRAP_SELECTOR = '._aamm'; // class of the wrapper when the popu
 const TIMELINE_OUTER = '_aag2';
 const TIMELINE_INNER = '_abc0'; // narrow, contains all articles
 
-const STORY_NODE_WRAPPER = '_aa64'; // the added node, not really the wrapper
+const STORY_NODE_WRAPPER = '_ac0n'; // the added node, not really the wrapper
 const STORY_MODAL_SELECTOR = 'section._ac6a._ac0e section._ac0a';
 const STORY_HEADER_SELECTOR = 'header._ac0k ._ac0m';
-const STORY_CONTENT_SELECTOR = '._aa65';
+const STORY_CONTENT_SELECTOR = '._ac0b';
 
 const BUTTON_LIKE_CLASS = '_abl-';
 
