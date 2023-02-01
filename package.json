@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rollup -c -m && web-ext build -s dist/build -o -a dist",
-    "rollup-watch": "rollup -c -m -w"
+    "rollup-watch": "rollup -c -m -w",
+    "zip": "zip -r ig-tools.zip src .gitignore manifest.json package-lock.json package.json README.md rollup.config.js tsconfig.json"
   },
   "keywords": [],
   "author": "",

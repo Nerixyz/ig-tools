@@ -1,15 +1,15 @@
 const POST_CLASS = '_aatb'; // <article> element for post
 const POST_BUTTONS_SELECTOR = 'section._aamu._ae3_'; // both timeline, modal
 const POST_BODY_SELECTOR = 'div._aato'; // body for both videos and photos
-const POST_POPUP = '_aatg'; // class added on popup
+const POST_POPUP = 'x1uhb9sk'; // class added on popup
 const POST_SINGLE_PAGE = 'x78zum5'; // class added on single page load
 const POST_POPUP_WRAP_SELECTOR = '._aamm'; // class of the wrapper when the popup is added
 
 const TIMELINE_OUTER = '_aag2';
 const TIMELINE_INNER = '_abc0'; // narrow, contains all articles
 
-const STORY_NODE_WRAPPER = '_ac0n'; // the added node, not really the wrapper
-const STORY_MODAL_SELECTOR = 'section._ac6a._ac0e section._ac0a';
+const STORY_NODE_WRAPPER = '_aa64'; // the added node, not really the wrapper
+const STORY_MODAL_SELECTOR = 'section._ac0a';
 const STORY_HEADER_SELECTOR = 'header._ac0k ._ac0m';
 const STORY_CONTENT_SELECTOR = '._ac0b';
 
@@ -24,7 +24,7 @@ const globalObserver = new MutationObserver((mutations) => {
         const added = Array.from(mutation.addedNodes) as HTMLElement[];
         // USE THIS WHEN DEBUGGING
         //
-        // console.log(...added);
+        console.log(...added);
         const post = added.find(x =>
             x.tagName === 'ARTICLE' &&
             x.classList?.contains(POST_CLASS));
