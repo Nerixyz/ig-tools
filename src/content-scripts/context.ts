@@ -142,11 +142,11 @@ function handleVideo(video: HTMLVideoElement) {
 function handleNewVideo(video: HTMLVideoElement) {
   const props = findProps(video);
   if (props) {
-    window.open(props.videoUrl, '_blank');
+    window.open(props, '_blank');
   }
 }
 
-function findProps(start: HTMLElement): { videoUrl: string } | undefined {
+function findProps(start: HTMLElement): string | undefined {
   let el: HTMLElement | null = start;
   do {
     if (!el) return;
@@ -161,7 +161,7 @@ function findProps(start: HTMLElement): { videoUrl: string } | undefined {
         return childProps?.sdSrc;
       }
       if (childProps?.post?.videoUrl) {
-        return (el as any)[react].children.props.post;
+        return childProps?.post?.videoUrl;
       }
     }
     el = el.parentElement;
