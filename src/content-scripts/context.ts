@@ -1,9 +1,9 @@
 const POST_CLASS = '_aatb'; // <article> element for post
 const POST_BUTTONS_SELECTOR = 'section._aamu._ae3_'; // both timeline, modal
-const POST_BODY_SELECTOR = 'div._aato'; // body for both videos and photos
+const POST_BODY_SELECTOR = 'div._aatk'; // body for both videos and photos
 const POST_POPUP = 'x1uhb9sk'; // class added on popup
 const POST_SINGLE_PAGE = 'x78zum5'; // class added on single page load
-const POST_POPUP_WRAP_SELECTOR = '._aamm'; // class of the wrapper when the popup is added
+const POST_POPUP_WRAP_SELECTOR = '._aa6e'; // class of the wrapper when the popup is added
 
 const TIMELINE_OUTER = '_aag2';
 const TIMELINE_INNER = '_abc0'; // narrow, contains all articles
