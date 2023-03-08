@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "InstaTools",
-  "version": "0.2.8",
+  "version": "0.2.9",
 
   "description": "Some common tools for Instagram like opening raw images and videos",
 

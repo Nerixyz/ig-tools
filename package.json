@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rollup -c -m && web-ext build -s dist/build -o -a dist",
     "watch": "rollup -c -m -w",
-    "zip": "zip -r ig-tools.zip src .gitignore manifest.json package-lock.json package.json README.md rollup.config.js tsconfig.json"
+    "zip": "zip -r dist/ig-tools.zip src .gitignore manifest.json package-lock.json package.json README.md rollup.config.js tsconfig.json"
   },
   "keywords": [],
   "author": "",
