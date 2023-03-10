@@ -1,6 +1,7 @@
 const POST_CLASS = '_aatb'; // <article> element for post
 const POST_BUTTONS_SELECTOR = 'section._aamu._ae3_, .x78zum5.x1q0g3np.x12nagc'; // modal, timeline
 const POST_BODY_SELECTOR = 'div._aatk,._ab8w._ab94._ab99'; // body for both videos and photos
+const POST_ACTUAL_BODY = '_aatk';
 const POST_POPUP = 'x1uhb9sk'; // class added on popup
 const POST_SINGLE_PAGE = 'x78zum5'; // class added on single page load
 const POST_POPUP_WRAP_SELECTOR = '._aa6e'; // class of the wrapper when the popup is added
@@ -70,6 +71,13 @@ function handleAddedPost(post: Element) {
 
   const buttons = post.querySelector(POST_BUTTONS_SELECTOR);
   let actualMedia = post.querySelector(POST_BODY_SELECTOR);
+  if (
+    actualMedia &&
+    actualMedia.childElementCount == 2 &&
+    actualMedia.firstElementChild?.classList.contains(POST_ACTUAL_BODY)
+  ) {
+    actualMedia = actualMedia.firstElementChild;
+  }
   if (!actualMedia) {
     actualMedia = post.querySelector(POST_POPUP_WRAP_SELECTOR);
   }
