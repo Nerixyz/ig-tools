@@ -121,7 +121,11 @@ function handleAlbum(ul: HTMLUListElement) {
   );
   const hasBack = buttons.some(x => x.classList.contains(ALBUM_BUTTON_BACK_CLASS));
   const hasForth = buttons.some(x => x.classList.contains(ALBUM_BUTTON_FORTH_CLASS));
-  const [first, second] = Array.from(ul.children).filter(x => x.classList.contains(ALBUM_LI_CLASS));
+  const possible = Array.from(ul.children).filter(x => x.classList.contains(ALBUM_LI_CLASS));
+  if (possible.length > 3) {
+    possible.splice(0, possible.length - 3);
+  }
+  const [first, second] = possible;
   let target = first;
   if (hasBack && hasForth) target = second;
   else if (hasForth) target = first;
