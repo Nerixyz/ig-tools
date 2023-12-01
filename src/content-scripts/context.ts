@@ -1,16 +1,19 @@
 const POST_CLASS = '_aatb'; // <article> element for post
-const POST_BUTTONS_SELECTOR = 'section._aamu._ae3_, .x78zum5.x1q0g3np.x12nagc'; // modal, timeline
-const POST_BODY_SELECTOR = 'div._aatk,._ab8w._ab94._ab99'; // body for both videos and photos
-const POST_ACTUAL_BODY = '_aatk';
-const POST_POPUP = 'x1uhb9sk'; // class added on popup
-const POST_SINGLE_PAGE = 'x78zum5'; // class added on single page load
+const POST_BUTTONS_SELECTOR = 'section._aamu._ae3_, .x6s0dn4.xrvj5dj > .x78zum5'; // modal, timeline
+const POST_BODY_SELECTOR =
+  'div._aatk,._ab8w._ab94._ab99,._aao_,div.x1qjc9v5.x972fbf.xcfux6l.x1qhh985.xm0m39n[tabindex="0"]'; // body for both videos and photos
+const POST_ACTUAL_BODY = '_aap0';
+const POST_POPUP = 'x1n2onr6'; // class added on popup
+const POST_SINGLE_PAGE = 'x1ey2m1c'; // class added on single page load
 const POST_POPUP_WRAP_SELECTOR = '._aa6e'; // class of the wrapper when the popup is added
+const POST_SINGLE_PAGE_SELECTOR = '.xdj266r.xkrivgy.xat24cr.x1gryazu'; // wrapper of a single page item
 
 const TIMELINE_OUTER = '_ab8w';
 const TIMELINE_INNER = '_abc0'; // narrow, contains all articles
-const TIMELINE_ITEM_SELECTOR = '.x78zum5.xdt5ytf.x5yr21d.xqxnypn'; // wrapper of a timeline item
+const TIMELINE_ITEM_SELECTOR = 'article > div.x78zum5.xdt5ytf.x5yr21d.xa1mljc'; // wrapper of a timeline item
 
 const STORY_NODE_WRAPPER = 'x78zum5'; // the added node, not really the wrapper
+const STORY_INNER_NODE_WRAPPER = '_ac0n'; // some inner node that's added after the wrapper
 const STORY_MODAL_SELECTOR = 'section._ac0a';
 const STORY_HEADER_SELECTOR = 'header._ac0k ._ac0m';
 const STORY_CONTENT_SELECTOR = '._ac0b';
@@ -39,14 +42,19 @@ const globalObserver = new MutationObserver(mutations => {
         x.classList?.contains(TIMELINE_INNER) ||
         x.classList?.contains(POST_CLASS) ||
         x.classList?.contains(POST_POPUP) ||
-        x.classList?.contains(POST_SINGLE_PAGE),
+        x.classList?.contains(POST_SINGLE_PAGE) ||
+        x.tagName === 'ARTICLE',
     );
     if (timeline) {
-      const posts = document.querySelectorAll(`article.${POST_CLASS},${TIMELINE_ITEM_SELECTOR}`);
+      const posts = document.querySelectorAll(
+        `article.${POST_CLASS},${TIMELINE_ITEM_SELECTOR},${POST_SINGLE_PAGE_SELECTOR}`,
+      );
       posts.forEach(el => handleAddedPost(el));
     }
 
-    const newStory = added.find(x => x.classList?.contains(STORY_NODE_WRAPPER));
+    const newStory = added.find(
+      x => x.classList?.contains(STORY_NODE_WRAPPER) || x.classList?.contains(STORY_INNER_NODE_WRAPPER),
+    );
     if (newStory) {
       const actualStory = document.querySelector(STORY_MODAL_SELECTOR);
       if (actualStory) {
@@ -81,9 +89,15 @@ function handleAddedPost(post: Element) {
   if (!actualMedia) {
     actualMedia = post.querySelector(POST_POPUP_WRAP_SELECTOR);
   }
-  if (!buttons || !actualMedia || !buttons.lastChild) return;
+  if (!buttons || !actualMedia || !buttons.lastChild) {
+    return;
+  }
 
-  buttons.insertBefore(createPostButton(actualMedia), buttons.lastChild);
+  if (buttons.tagName === 'SECTION') {
+    buttons.insertBefore(createPostButton(actualMedia), buttons.lastChild);
+  } else {
+    buttons.appendChild(createPostButton(actualMedia));
+  }
 }
 
 function createPostButton(context: Element): HTMLElement {
