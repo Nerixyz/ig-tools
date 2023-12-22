@@ -14,9 +14,9 @@ const TIMELINE_ITEM_SELECTOR = 'article > div.x78zum5.xdt5ytf.x5yr21d.xa1mljc'; 
 
 const STORY_NODE_WRAPPER = 'x78zum5'; // the added node, not really the wrapper
 const STORY_INNER_NODE_WRAPPER = '_ac0n'; // some inner node that's added after the wrapper
-const STORY_MODAL_SELECTOR = 'section._ac0a';
-const STORY_HEADER_SELECTOR = 'header._ac0k ._ac0m';
-const STORY_CONTENT_SELECTOR = '._ac0b';
+const STORY_MODAL_SELECTOR = 'div[style] > .x5yr21d.x1n2onr6.xh8yej3';
+const STORY_HEADER_SELECTOR = '.x6s0dn4.x78zum5.x1xmf6yo > :nth-child(2)';
+const STORY_CONTENT_SELECTOR = 'div.x5yr21d:nth-child(2)';
 
 const BUTTON_LIKE_CLASS = '_abl-';
 
@@ -210,3 +210,8 @@ function mark(el: Element) {
 function isMarked(el: Element & { [MARKER]?: boolean }): boolean {
   return !!el[MARKER];
 }
+
+(globalThis as any).__igtools = {
+  findProps,
+  handleNearestMedia,
+};
